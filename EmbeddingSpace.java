@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class EmbeddingSpace {
-    //
     private final double[][] weights;
     private final int unitSize;
     private final int dimension;

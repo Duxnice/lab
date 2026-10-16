@@ -1,18 +1,15 @@
 package labotary;
 
 public class Residual {
-    public double[][] w0;
-    public double[] b0;
+    public Linear outputProjection;
 
     public Residual(double[][] w0, double[] b0) {
-        this.w0 = w0;
-        this.b0 = b0;
+        outputProjection = new Linear(w0, b0);
     }
 
     public double[] forward(double[] H, double[] Z) {
-        Linear linear = new Linear(w0, b0);
 
-        double[] A = linear.forward(Z);
+        double[] A = outputProjection.forward(Z);
 
         double[] U = new double[A.length];
 

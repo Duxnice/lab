@@ -24,6 +24,10 @@ public class Linear {
     }
 
     public double[] forward(double[] input) {
+        return forwardOne(input);
+    }
+
+    public double[] forwardOne(double[] input) {
         double[] output = new double[outputDim];
         for(int i = 0; i < outputDim; i++) {
             double sum = bias[i];
@@ -33,6 +37,14 @@ public class Linear {
             output[i] = sum;
         }
         return output;
+    }
+
+    public double[][] forwardSequence(double[][] inputs) {
+        double[][] outputs = new double[inputs.length][];
+        for (int i = 0; i < inputs.length; i++) {
+            outputs[i] = forwardOne(inputs[i]);
+        }
+        return outputs;
     }
 
     public int getInputDim() {

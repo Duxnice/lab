@@ -4,9 +4,9 @@ public class AttentionOutput {
     public static double[] getZ(double[] W, double[][] V) {
         int dim = V[0].length;
         double[] output = new double[dim];
-        for(int i = 0; i < dim; i++) {
-            for(int j = 0; j < W.length; j++) {
-                output[i] += W[j] * V[j][i];
+        for(int i = 0; i < W.length; i++) {
+            for(int j = 0; j < dim; j++) {
+                output[i] += W[i] * V[i][j];
             }
         }
         return output;

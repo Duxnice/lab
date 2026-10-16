@@ -8,13 +8,9 @@ import java.util.stream.IntStream;
 public class BatchBuilder {
     private int[] data;
     private int blockSize;
-    private int batchSize = 0;
 
     public BatchBuilder(int[] data, int blockSize) {
-        if (data == null || blockSize <= 0 || blockSize >= data.length) {
-            throw new IllegalArgumentException("Invalid data or blockSize");
-        }
-        this.data = data;
+        this.data = data.clone();
         this.blockSize = blockSize;
     }
 
@@ -39,7 +35,11 @@ public class BatchBuilder {
         return y;
     }
 
-    public void setBatchSize(int batchSize) {
-        this.batchSize = batchSize;
+    public int getBlockSize() {
+        return blockSize;
+    }
+
+    public int getDataLength() {
+        return data.length;
     }
 }

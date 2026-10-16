@@ -1,7 +1,8 @@
 package labotary;
 
 public class SoftMax {
-    public static double[] forward(double[] scores) {
+
+    public static double[] forwardOne(double[] scores) {
         double max = scores[0];
         for(double s : scores) {
             max = Math.max(max, s);
@@ -16,5 +17,13 @@ public class SoftMax {
             probabilities[i] /= sum;
         }
         return probabilities;
+    }
+
+    public static double[][] forwardSequence(double[][] scores) {
+        double[][] output = new double[scores.length][];
+        for(int i = 0; i < scores.length; i++) {
+            output[i] = forwardOne(scores[i]);
+        }
+        return output;
     }
 }

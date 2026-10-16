@@ -1,13 +1,13 @@
 package labotary;
 
 public class LayerNorm {
-    private double[] gamma;
-    private double[] beta;
+    private final double[] gamma;
+    private final double[] beta;
 
-    private int dim;
-    private int epsilon;
+    private final int dim;
+    private final double epsilon;
 
-    public LayerNorm(int d, int e) {
+    public LayerNorm(int d, double e) {
         this.dim = d;
         this.epsilon = e;
 
@@ -15,8 +15,8 @@ public class LayerNorm {
         beta = new double[d];
 
         for(int i = 0; i < d; i++) {
-            gamma[i] = 1;
-            beta[i] = 0;
+            gamma[i] = 1.0;
+            beta[i] = 0.0;
         }
     }
 
@@ -25,24 +25,25 @@ public class LayerNorm {
         for(int i = 0; i < dim; i++) {
             sum += input[i];
         }
-        double tb = sum/dim;
+        double mean  = sum/dim;
         double varianceSum = 0.0;
         for(int i = 0; i < dim; i++) {
-            double diff = input[i] - tb;
-            varianceSum += diff*diff;
+            double diff = input[i] - mean ;
+            varianceSum += diff * diff;
         }
         double variance = varianceSum/dim;
         double denominator = Math.sqrt(variance + epsilon);
         double[] output = new double[dim];
         for(int i = 0; i < dim; i++) {
-            output[i] = gamma[i] * ((input[i] - sum) /denominator) * beta[i];
+            double normalized = (input[i] - mean) /denominator;
+            output[i] = gamma[i] * normalized + beta[i];
         }
         return output;
     }
 
     public double[][] forwardSequence(double[][] input) {
-        double[][] output = new double[dim][];
-        for(int i = 0; i < dim; i++) {
+        double[][] output = new double[input.length][];
+        for(int i = 0; i < input.length; i++) {
             output[i] = forwardOne(input[i]);
         }
         return output;

@@ -25,8 +25,21 @@ public class CharacterUnit {
         return out;
     }
 
-    public int vocaSize() {
+    public int vocabularySize() {
         return stoi.size();
+    }
+
+    public char decodeOne(int id) {
+        return itos.get(id);
+    }
+
+    public String decodeChunk(int[] ids) {
+        StringBuilder output =
+                new StringBuilder(ids.length);
+        for (int id : ids) {
+            output.append(decodeOne(id));
+        }
+        return output.toString();
     }
 
     public int[] getIds() {

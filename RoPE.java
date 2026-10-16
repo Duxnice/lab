@@ -13,7 +13,7 @@ public class RoPE {
             double cos = Math.cos(angle);
             double sin = Math.sin(angle);
             rotated[index] = x * cos - y * sin;
-            rotated[index+1] = y * sin + y * cos;
+            rotated[index+1] = x * sin + y * cos;
         }
         return rotated;
     }
