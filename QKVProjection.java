@@ -16,10 +16,26 @@ public class QKVProjection {
         public final double[] k;
         public final double[] v;
 
-        private VectorResult(
+        public VectorResult(
                 double[] q,
                 double[] k,
                 double[] v) {
+
+            this.q = q;
+            this.k = k;
+            this.v = v;
+        }
+    }
+
+    public static final class Result {
+        public final double[][] q;
+        public final double[][] k;
+        public final double[][] v;
+
+        public Result(
+                double[][] q,
+                double[][] k,
+                double[][] v) {
 
             this.q = q;
             this.k = k;
@@ -34,16 +50,21 @@ public class QKVProjection {
         return new VectorResult(q,k,v);
     }
 
-    public VectorResult[] forwardSequence(double[][] embeddings) {
+    public Result forwardSequence(double[][] embeddings) {
         int timeStep = embeddings.length;
-        VectorResult[] result = new VectorResult[timeStep];
+        double[][] q = new double[timeStep][];
+        double[][] k = new double[timeStep][];
+        double[][] v = new double[timeStep][];
         for(int t = 0; t < timeStep; t++) {
-            result[t] = forwardOne(embeddings[t]);
+            VectorResult vt = forwardOne(embeddings[t]);
+            q[t] = vt.q;
+            k[t] = vt.k;
+            v[t] = vt.v;
         }
-        return result;
+        return new Result(q, k ,v);
     }
 
-    public VectorResult[] forward(double[][] embeddings) {
+    public Result forward(double[][] embeddings) {
         return forwardSequence(embeddings);
     }
 }
