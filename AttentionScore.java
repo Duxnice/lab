@@ -11,7 +11,7 @@ public class AttentionScore {
 
         for(int i = 0; i <= queryPosition; i++) {
             double dot = 0.0;
-            for(int j = 0; i < dim; j++) {
+            for(int j = 0; j < dim; j++) {
                 dot += qRotated[j] * kRotated[i][j];
             }
             scores[i] = dot/scale;

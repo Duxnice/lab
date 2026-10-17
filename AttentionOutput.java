@@ -6,7 +6,7 @@ public class AttentionOutput {
         double[] output = new double[dim];
         for(int i = 0; i < W.length; i++) {
             for(int j = 0; j < dim; j++) {
-                output[i] += W[i] * V[i][j];
+                output[j] += W[i] * V[i][j];
             }
         }
         return output;
