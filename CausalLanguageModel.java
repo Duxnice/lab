@@ -16,16 +16,12 @@ public class CausalLanguageModel {
 
     public double[][] forwardSequence(int[] inputIds) {
         double[][] embeddings = embeddingSpace.forward(inputIds);
-
-        double[][] hidden =
-                backbone.forwardSequence(embeddings);
-
+        double[][] hidden = backbone.forwardSequence(embeddings);
         return outputHead.forwardSequence(hidden);
     }
 
     public double[] forwardNextToken(int[] inputIds) {
         double[][] logits = forwardSequence(inputIds);
-
         return logits[logits.length - 1];
     }
 }
