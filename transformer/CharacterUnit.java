@@ -1,4 +1,4 @@
-package labotary;
+package labotary.transformer;
 
 import java.util.*;
 

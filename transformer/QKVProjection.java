@@ -1,4 +1,4 @@
-package labotary;
+package labotary.transformer;
 
 public class QKVProjection {
     private final Linear queryProjection;

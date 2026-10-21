@@ -1,4 +1,4 @@
-package labotary;
+package labotary.transformer;
 
 public class Config {
     public final int blockSize = 3;

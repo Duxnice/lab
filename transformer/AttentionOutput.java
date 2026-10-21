@@ -1,4 +1,4 @@
-package labotary;
+package labotary.transformer;
 
 public class AttentionOutput {
     public static double[] getZ(double[] W, double[][] V) {

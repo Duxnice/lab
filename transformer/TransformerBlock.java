@@ -1,4 +1,4 @@
-package labotary;
+package labotary.transformer;
 
 public class TransformerBlock {
     private final LayerNorm attentionNorm;

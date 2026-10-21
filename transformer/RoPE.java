@@ -1,4 +1,4 @@
-package labotary;
+package labotary.transformer;
 
 public class RoPE {
     public static double[] rotate(double[] vector, int position, double base) {

@@ -1,4 +1,4 @@
-package labotary;
+package labotary.transformer;
 
 public class CrossEntropyLoss {
     public static final class OneResult {
